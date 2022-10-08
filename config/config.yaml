@@ -1,0 +1,19 @@
+artifacts:
+  ARTIFACTS_DIR: artifacts     # Artifacts directory
+  TRAINED_MODEL_DIR: model     # Trained model directory
+  BASE_MODEL_DIR: base_model   # base model directory for Getting and Storing the transfer models
+  BASE_MODEL_NAME: VGG16_base_model.h5   # Using VGG 16 base model
+  UPDATED_BASE_MODEL_NAME: updated_VGG16_base_model.h5  # Updated base model
+  CHECKPOINT_DIR: checkpoints      # check points directory
+  BASE_LOG_DIR: base_model_dir     # logging all base model 
+  TENSORBOARD_ROOT_LOG_DIR: tensorboard_log_dir   # logs associated with tensorboard
+  CALLBACKS_DIR: callbacks    # callbacks for artifacts
+  DATA_DIR: data
+
+source_download_dirs:
+  - ../outside_data/dog
+  - ../outside_data/cat
+
+local_data_dirs:
+  - data/dog
+  - data/cat
