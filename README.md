@@ -25,11 +25,13 @@ touch config/congig.yaml config/secrets.yaml
 
 touch src/__init__.py src/utils/__init__.py param.yaml dvc.yaml config/config.yaml src/stage_01_load_save.py src/utils/all_utils.py setup.py .gitignore
 
+
+
+pip freeze > requirements.txt
+
 install src
 
 pip install -e .
-
-pip freeze > requirements.txt
 
 
 ```
