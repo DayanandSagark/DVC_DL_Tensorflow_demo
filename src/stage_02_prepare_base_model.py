@@ -24,11 +24,12 @@ def prepare_base_model(config_path, params_path):
     base_model_dir_path = os.path.join(artifacts_dir, base_model_dir)
 
     create_directory([base_model_dir_path])
-    
+    # Base model path
     base_model_path = os.path.join(base_model_dir_path, base_model_name)
-
+    # Loading tne base model VGG 16 for the transfer learning
     model = get_VGG_16_model(input_shape=params["IMAGE_SIZE"], model_path=base_model_path)
-
+    # Preparing the final model taht will take i/p base model, num of class is 2, freeze
+    #every thing in base model,freeze_till as None, Learning rate
     full_model = prepare_model(
         model,
         CLASSES=params["CLASSES"],
@@ -36,12 +37,12 @@ def prepare_base_model(config_path, params_path):
         freeze_till=None,
         learning_rate=params["LEARNING_RATE"]
     )
-
+   # Newly updated custom model to updated/added in new directory
     update_base_model_path = os.path.join(
         base_model_dir_path,
         artifacts["UPDATED_BASE_MODEL_NAME"]
     )
-
+    # Logging the updated base model summary
     def _log_model_summary(full_model):
         with io.StringIO() as stream:
             full_model.summary(print_fn=lambda x: stream.write(f"{x}\n"))
@@ -49,7 +50,7 @@ def prepare_base_model(config_path, params_path):
         return summary_str
 
     logging.info(f"full model summary: \n{_log_model_summary(full_model)}")
-
+    # Saving the model to the dir location
     full_model.save(update_base_model_path)
     
 
